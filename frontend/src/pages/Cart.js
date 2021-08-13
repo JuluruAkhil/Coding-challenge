@@ -1,5 +1,6 @@
 import React from 'react'
-import { Container, Col, Row, Button } from 'react-bootstrap'
+import { Container, Col, Row, Card, Button, ListGroup } from 'react-bootstrap'
+import CartItem from '../components/CartItem'
 
 function Cart() {
   return (
@@ -10,98 +11,25 @@ function Cart() {
             <h1>Cart (2 items)</h1>
           </Row>
           <Row>
-            <div class="d-flex justify-content-between align-items-center">
-              <img
-                class="img-thumbnail rounded"
-                src="https://cdn1.vectorstock.com/i/thumb-large/44/70/hexagon-rocket-logo-vector-22374470.jpg"
-                alt="Fast Starter"
-                style={{ width: '20%' }}
-              />
-              <div class>
-                <h5>Emoji 1</h5>
-              </div>
-              <div class="d-flex flex-column justify-content-around align-items-center">
-                <p>
-                  <span>
-                    <strong id="summary">$17.99</strong>
-                  </span>
-                  <div class="input-group">
-                    <span class="input-group-btn">
-                      <button
-                        type="button"
-                        class="btn btn-default btn-number"
-                        disabled="disabled"
-                        data-type="minus"
-                        data-field="quant[1]"
-                      >
-                        <span class="fas fa-minus"></span>
-                      </button>
-                    </span>
-                    <input
-                      type="text"
-                      name="quant[1]"
-                      class="form-control input-number"
-                      value="1"
-                      min="1"
-                      max="10"
-                    />
-                    <span class="input-group-btn">
-                      <button
-                        type="button"
-                        class="btn btn-default btn-number"
-                        data-type="plus"
-                        data-field="quant[1]"
-                      >
-                        <span class="fas fa-plus"></span>
-                      </button>
-                    </span>
-                  </div>
-                  <Button variant="danger">Delete</Button>
-                </p>
-              </div>
-            </div>
+            <CartItem />
           </Row>
-          {/* <Row>
-            <div class="d-flex justify-content-between">
-              <Col>
-                <img
-                  class="img-thumbnail rounded"
-                  src="https://cdn1.vectorstock.com/i/thumb-large/44/70/hexagon-rocket-logo-vector-22374470.jpg"
-                  alt="Fast Starter"
-                  style={{ width: '20%' }}
-                />
-              </Col>
-              <div className="d-flex flex-column justify-content-around">
-                <h5>Emoji 1</h5>
-                <p class="mb-3 text-muted text-uppercase small">25 points</p>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <a
-                  href="#!"
-                  type="button"
-                  class="card-link-secondary small text-uppercase mr-3"
-                >
-                  <i class="fas fa-trash-alt mr-1"></i> Remove item{' '}
-                </a>
-                <a
-                  href="#!"
-                  type="button"
-                  class="card-link-secondary small text-uppercase"
-                >
-                  <i class="fas fa-heart mr-1"></i> Move to wish list{' '}
-                </a>
-              </div>
-              <p class="mb-0">
-                <span>
-                  <strong id="summary">$17.99</strong>
-                </span>
-              </p>
-            </div>
-          </Row> */}
         </Col>
-        <Col>ff</Col>
+        <Col>
+          <Card class="mb-3">
+            <Card.Body>
+              <h5 class="mb-3">Checkout</h5>
+              <ListGroup variant="flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                  <div>The total dbKudosPoints being spent</div>
+                  <span>
+                    <strong>200</strong>
+                  </span>
+                </li>
+              </ListGroup>
+              <Button variant="primary">go to checkout</Button>
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
     </Container>
   )
