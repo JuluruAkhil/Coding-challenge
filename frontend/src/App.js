@@ -1,4 +1,5 @@
 import Homepage from './pages/Homepage'
+import Cart from './pages/Cart'
 import NavbarComponent from './components/Navbar'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -11,10 +12,10 @@ function App() {
       <Switch>
         {/* <Route path="/about">
           <About />
-        </Route>
-        <Route path="/users">
-          <Users />
         </Route> */}
+        <Route path="/cart">
+          <Cart />
+        </Route>
         <Route path="/">
           <Homepage />
         </Route>
