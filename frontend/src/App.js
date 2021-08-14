@@ -1,4 +1,5 @@
 import Homepage from './pages/Homepage'
+import Login from './pages/Login'
 import NavbarComponent from './components/Navbar'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -14,10 +15,14 @@ function App() {
         </Route>
         <Route path="/users">
           <Users />
-        </Route> */}
+        </Route> */
+        <Route path="/login">
+          <Login />
+        </Route>}
         <Route path="/">
           <Homepage />
         </Route>
+        
       </Switch>
     </Router>
   )
