@@ -6,16 +6,24 @@ export const postSlice = createSlice({
   initialState: {
     cart: { 1: [1, 25] },
     loading: false,
-    error: null,
   },
   extraReducers: {
     [AddCart.fulfilled]: (state, action) => {
-      state.cart[action.payload.id][0] = 1
+      state.cart[action.payload.id] = [1, action.payload.price]
     },
     [AddCart.rejected]: (state, action) => {},
     [UpdateCart.fulfilled]: (state, action) => {
       state.cart[action.payload.id][0] = state.action.payload.qty
     },
+    [UpdateCart.rejected]: (state, action) => {},
+    [RemoveCart.fulfilled]: (state, action) => {
+      delete state.cart[action.payload.id]
+    },
+    [RemoveCart.rejected]: (state, action) => {},
+    [Checkout.fulfilled]: (state, action) => {
+      state.cart = {}
+    },
+    [Checkout.rejected]: (state, action) => {},
   },
 })
 
