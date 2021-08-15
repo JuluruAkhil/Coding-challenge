@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { AddCart, UpdateCart, RemoveCart, Checkout } from '../service'
 
 export const postSlice = createSlice({
-  name: 'post',
+  name: 'cart',
   initialState: {
     cart: { 1: [1, 25] },
     loading: false,

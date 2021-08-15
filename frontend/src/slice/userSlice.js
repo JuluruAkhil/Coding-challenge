@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { LoginUser } from '../service'
 
 export const postSlice = createSlice({
-  name: 'post',
+  name: 'login',
   initialState: {
     userId: null,
     password: null,
