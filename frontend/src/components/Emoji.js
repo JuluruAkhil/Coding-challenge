@@ -1,19 +1,16 @@
 import React from 'react'
 import { Card, Col, Button } from 'react-bootstrap'
 
-function Emoji() {
+function Emoji({ emoji }) {
   return (
     <Col>
       <Card className="text-center">
         <Card.Img variant="top" src="holder.js/100px160" />
         <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a longer card with supporting text below as a natural
-            lead-in to additional content. This content is a little bit longer.
-          </Card.Text>
+          <Card.Title>{emoji.name}</Card.Title>
+          <Card.Text>{emoji.description}</Card.Text>
           <div className="d-flex justify-content-around align-items-center">
-            <Card.Subtitle>25 Points</Card.Subtitle>
+            <Card.Subtitle>{`${emoji.price} points`}</Card.Subtitle>
             <Button>Add to Cart</Button>
           </div>
         </Card.Body>
