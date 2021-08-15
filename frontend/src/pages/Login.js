@@ -8,7 +8,7 @@ import { LoginUser } from '../service'
 
 const Login = () => {
   const dispatch = useDispatch()
-  const [localUser, setLocaluser] = useState({ email: null, password: null })
+  const [localUser, setLocaluser] = useState({ id: null, password: null })
 
   const onChange = (type, value) => {
     setLocaluser({ ...localUser, [type]: value })
@@ -26,11 +26,11 @@ const Login = () => {
           <form className="shadow p-3 mb-5 bg-white rounded">
             <div className="mb-3">
               <label className="form-label" htmlFor="formBasicEmail">
-                Email address
+                User Id
               </label>
               <input
                 type="email"
-                placeholder="Enter email"
+                placeholder="Enter UserID"
                 className="form-control"
                 onChange={(e) => onChange('email', e.target.value)}
               />

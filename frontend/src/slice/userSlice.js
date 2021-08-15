@@ -1,22 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { LoginUser } from '../service'
 
-export const postSlice = createSlice({
+export const userSlice = createSlice({
   name: 'login',
   initialState: {
-    userId: null,
-    password: null,
+    id: null,
+    name: null,
+    balance: 100,
   },
   extraReducers: {
     [LoginUser.fulfilled]: (state, action) => {
-      state.userId = action.payload.userId
-      state.password = action.payload.password
+      state.id = action.payload.id
+      state.name = action.payload.name
+      state.balance = action.payload.balance
     },
-    [LoginUser.rejected]: (state, action) => {
-      state.userId = null
-      state.password = null
-    },
+    [LoginUser.rejected]: (state, action) => {},
   },
 })
 
-export default postSlice.reducer
+export default userSlice.reducer

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import cartSlice from './slice/cartSlice'
-import userSlice from './slice/userSlice'
+import cartReducer from './slice/cartSlice'
+import userReducer from './slice/userSlice'
+import emojisReducer from './slice/emojisSlice'
 
 export default configureStore({
   reducer: {
-    cart: cartSlice,
-    user: userSlice,
+    cart: cartReducer,
+    user: userReducer,
+    emojis: emojisReducer,
   },
 })

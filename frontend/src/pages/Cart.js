@@ -21,7 +21,14 @@ function Cart() {
             <h1>Cart (2 items)</h1>
           </Row>
           <Row>
-            <CartItem key={1} />
+            {cart.map((cartItemData) => {
+              return (
+                <CartItem
+                  cartItemData={cartItemData}
+                  key={cartItemData['id']}
+                />
+              )
+            })}
           </Row>
         </Col>
         <Col>

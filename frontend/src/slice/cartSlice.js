@@ -1,15 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { AddCart, UpdateCart, RemoveCart, Checkout } from '../service'
 
-export const postSlice = createSlice({
+export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    cart: { 1: [1, 25] },
+    cart: [
+      { id: 5, name: 'p5', description: 'prod5', price: 10.0, quantity: 7 },
+    ],
     loading: false,
   },
   extraReducers: {
     [AddCart.fulfilled]: (state, action) => {
-      state.cart[action.payload.id] = [1, action.payload.price]
+      state.cart.push({
+        ...action.payload.product,
+        quantity: action.payload.quantity,
+      })
     },
     [AddCart.rejected]: (state, action) => {},
     [UpdateCart.fulfilled]: (state, action) => {
@@ -27,4 +32,4 @@ export const postSlice = createSlice({
   },
 })
 
-export default postSlice.reducer
+export default cartSlice.reducer

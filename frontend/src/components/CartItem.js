@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
-function CartItem({ key }) {
+function CartItem({ cartItemData }) {
   return (
     <div class="d-flex justify-content-between align-items-center p-2">
       <img
@@ -12,11 +12,11 @@ function CartItem({ key }) {
         style={{ width: '20%' }}
       />
       <div class>
-        <h5>Emoji 1</h5>
+        <h5>{cartItemData.name}</h5>
       </div>
       <div class="d-flex flex-column">
         <p class="text-center">
-          <strong id="summary">$17.99</strong>
+          <strong id="summary">{`${cartItemData.price} points`}</strong>
         </p>
         <div class="input-group">
           <span class="input-group-btn">
@@ -34,7 +34,7 @@ function CartItem({ key }) {
             type="text"
             name="quant[1]"
             class="form-control input-number"
-            value="2"
+            value={cartItemData.quantity}
             min="1"
             max="10"
           />
