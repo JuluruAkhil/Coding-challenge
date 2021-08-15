@@ -1,49 +1,49 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Chip from "@material-ui/core/Chip";
-import Paper from "@material-ui/core/Paper";
-import Avatar from "@material-ui/core/Avatar";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
+import React from 'react'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import Chip from '@material-ui/core/Chip'
+import Paper from '@material-ui/core/Paper'
+import Avatar from '@material-ui/core/Avatar'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   profileImage: {
-    width: "50%",
-    borderRadius: "100%"
+    width: '50%',
+    borderRadius: '100%',
   },
   content: {
-    justifyContent: "left",
-    textAlign: "left"
+    justifyContent: 'left',
+    textAlign: 'left',
   },
   details: {
-    marginTop: "-20px"
+    marginTop: '-20px',
   },
   chip: {
-    padding: "0 5px",
-    margin: "2px 5px"
+    padding: '0 5px',
+    margin: '2px 5px',
   },
   about: {
-    margin: "10px 0",
-    alignItems: "left",
-    textAlign: "left"
-  }
-}));
+    margin: '10px 0',
+    alignItems: 'left',
+    textAlign: 'left',
+  },
+}))
 
 export default function Profile() {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <React.Fragment>
@@ -185,5 +185,5 @@ export default function Profile() {
         </div>
       </div>
     </React.Fragment>
-  );
+  )
 }

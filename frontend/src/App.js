@@ -1,7 +1,7 @@
 import Homepage from './pages/Homepage'
 import Cart from './pages/Cart'
 import NavbarComponent from './components/Navbar'
-import Profile from './pages/Profile'
+import UserProfile from './pages/UserProfile'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Login from './pages/Login'
 
@@ -13,7 +13,7 @@ function App() {
       </div>
       <Switch>
         <Route path="/profile">
-          <Profile />
+          <UserProfile />
         </Route>
         <Route path="/Login">
           <Login />
