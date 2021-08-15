@@ -4,10 +4,11 @@
 
 ## Introduction
 ### About DBKudos
-All employees strive to give their best and stand out from the rest. In that process, they stand out and deliver excellent results. However, all such work cannot be rewarded with a promotion, a bonus or an award. Sometimes, a little pat in the back is all it takes to uplift the moods of the employees. This is exactly what the DBKudos platform does. 
+All employees strive to give their best and stand out from the rest. In that process, they deliver excellent results. However, all such work cannot be rewarded with a promotion, a bonus or an award. Sometimes, a little pat in the back is all it takes to uplift the moods of the employees. This is exactly what the DBKudos platform does. 
 
 ### The Problem
-An employee may be applauded by several others, but there is little that he can do to show off his success to his peers. The major problems that were identified are -
+An employee may be applauded by several others, but there is little that they can do to show off their success to their peers. 
+Along the similar lines, the major problems that were identified are -
 * No proper tracking system to track the number of kudos received till date
 * Lack of a marketplace where these kudos can be redeemed
 * No public profile/leaderboard available to compare progress amongst peers 
@@ -24,6 +25,8 @@ Next, we came up with the features and prioritized them in the following manner 
 |                                                                                                                                                                       MVP                                                                                                                                                                       	| Good to have features                                                                                                                                          	|                                                                  Post coding challenge                                                                  	|
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:	|----------------------------------------------------------------------------------------------------------------------------------------------------------------	|:-------------------------------------------------------------------------------------------------------------------------------------------------------:	|
 | 1. Login page<br>2. Shopping cart with 10 emojis<br>3. User profile page<br>4. Search an user<br>5. Check wallet balance<br>6. Leaderboard page<br>7. Manual email banner export<br>8. Checkout page (with profile password)<br>9. Sort emojis by price<br>10. Emoji recommendations based on balance<br>11. Popup to display details of emojis 	| 1. Trending emojis<br>2. Transaction history of users<br>3. Merge lower value emojis into one<br>4. Add emojis to wishlist<br>5. Automatic email banner export 	| 1. Export leaderboard as CSV<br>2. Checkout page (OTP-based)<br>3. Display the most recent kudos received in profile<br>4. Integration with DBKudos App 	|
+
+For more details, you can check out our [Minimum Viable Product spreadsheet](https://docs.google.com/spreadsheets/d/1RyVtUPBhzMLLPm1EqBZ9I587Rt_lgV2t0-X9Dvt0Zx8/edit#gid=568946126)  where everything has been recorded and documented in accordance with the Agile Framework.
 
 ### The Team
 |    Role    	|                  Members                  	|
