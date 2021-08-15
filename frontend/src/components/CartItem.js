@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 
-function CartItem() {
+function CartItem({ key }) {
   return (
     <div class="d-flex justify-content-between align-items-center p-2">
       <img
@@ -33,7 +34,7 @@ function CartItem() {
             type="text"
             name="quant[1]"
             class="form-control input-number"
-            value="1"
+            value="2"
             min="1"
             max="10"
           />

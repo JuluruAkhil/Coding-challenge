@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Container, Row, Col } from 'react-bootstrap'
 
+import { useDispatch } from 'react-redux'
+
+import { LoginUser } from '../service'
+
 const Login = () => {
+  const dispatch = useDispatch()
+  const [localUser, setLocaluser] = useState({ email: null, password: null })
+
+  const onChange = (type, value) => {
+    setLocaluser({ ...localUser, [type]: value })
+  }
+
+  function loginSubmit(e) {
+    e.preventDefault()
+    dispatch(LoginUser(localUser))
+  }
+
   return (
     <Container>
       <Row className="mt-5">
@@ -16,6 +32,7 @@ const Login = () => {
                 type="email"
                 placeholder="Enter email"
                 className="form-control"
+                onChange={(e) => onChange('email', e.target.value)}
               />
               <small className="text-muted form-text"></small>
             </div>
@@ -28,10 +45,15 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 className="form-control"
+                onChange={(e) => onChange('password', e.target.value)}
               />
             </div>
 
-            <button className="btn btn-primary" type="submit">
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onSubmit={loginSubmit}
+            >
               Submit
             </button>
           </form>

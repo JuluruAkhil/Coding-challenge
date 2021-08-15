@@ -1,8 +1,18 @@
 import React from 'react'
 import { Container, Col, Row, Card, Button, ListGroup } from 'react-bootstrap'
 import CartItem from '../components/CartItem'
+import { Checkout } from '../service'
+import { useSelector, useDispatch } from 'react-redux'
 
 function Cart() {
+  const dispatch = useDispatch()
+  const { cart } = useSelector((state) => state.cart)
+  const { userId } = useSelector((state) => state.user)
+
+  const clickCheckout = () => {
+    dispatch(Checkout({ userId, cart }))
+  }
+
   return (
     <Container>
       <Row>
@@ -11,7 +21,7 @@ function Cart() {
             <h1>Cart (2 items)</h1>
           </Row>
           <Row>
-            <CartItem />
+            <CartItem key={1} />
           </Row>
         </Col>
         <Col>
@@ -26,7 +36,9 @@ function Cart() {
                   </span>
                 </li>
               </ListGroup>
-              <Button variant="primary">go to checkout</Button>
+              <Button variant="primary" onClick={clickCheckout}>
+                go to checkout
+              </Button>
             </Card.Body>
           </Card>
         </Col>

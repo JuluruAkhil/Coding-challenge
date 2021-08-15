@@ -5,11 +5,11 @@ function NavbarComponent() {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="/">Navbar</Navbar.Brand>
         <Nav className="me-justify-content-end">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Nav.Link href="/profile">Profile</Nav.Link>
+          <Nav.Link href="/cart">Cart</Nav.Link>
+          <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

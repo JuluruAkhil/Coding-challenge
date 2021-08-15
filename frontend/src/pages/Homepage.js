@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Container, Row, Col } from 'react-bootstrap'
 import Emoji from '../components/Emoji'
+import axios from 'axios'
 
 function Homepage() {
+  const [emojisData, setemojisData] = useState([])
+
+  function getEmojisData() {
+    axios
+      .get('https://jsonplaceholder.typicode.com/todos/1')
+      .then((response) => response.data)
+      .then((data) => console.log(data))
+  }
+
+  useEffect(() => {
+    getEmojisData()
+  }, [])
+
   return (
     <Container>
       <Row>
