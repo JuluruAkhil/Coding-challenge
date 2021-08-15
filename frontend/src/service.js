@@ -1,14 +1,23 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-const BASE_URL = 'http://localhost:5050'
+const BASE_URL = 'http://localhost:8081'
+
+export const GetCart = createAsyncThunk(
+  'cart/GetCart',
+  async (id) =>
+    await await (
+      await axios.get(`${BASE_URL}/dbkudos/cart/${id}`)
+    ).data
+)
 
 export const AddCart = createAsyncThunk(
   'cart/AddCart',
-  async (emojiAddData) =>
+  async (emojiAddData) => {
     await await (
       await axios.post(`${BASE_URL}/dbkudos/cart/add`, emojiAddData)
     ).data
+  }
 )
 
 export const UpdateCart = createAsyncThunk(
@@ -49,8 +58,20 @@ export const LoginUser = createAsyncThunk(
     ).data
 )
 
-export const GetEmojis = createAsyncThunk('emojis', async () => {
-  await await await (
-    await axios.post(`${BASE_URL}/dbkudos/products`)
-  ).data
-})
+export const GetEmojis = createAsyncThunk(
+  'emojis',
+
+  async () => await await (await axios.get(`${BASE_URL}/dbkudos/products`)).data
+)
+
+// ;async () => {
+//   // await await await (
+//   //   await axios.get(`${BASE_URL}/dbkudos/products`)
+//   // ).data
+//   // axios
+//   //   .get(`${BASE_URL}/dbkudos/products`)
+//   //   .then((res) => res.data)
+//   //   .then((data) => console.log(data))
+//   // const res = await axios.get(`${BASE_URL}/dbkudos/products`)
+//   // return await res.json()
+// }

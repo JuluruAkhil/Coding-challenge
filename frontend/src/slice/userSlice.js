@@ -4,9 +4,9 @@ import { LoginUser } from '../service'
 export const userSlice = createSlice({
   name: 'login',
   initialState: {
-    id: null,
-    name: null,
-    balance: 100,
+    id: 2,
+    name: 'Akhil',
+    balance: 1000,
   },
   extraReducers: {
     [LoginUser.fulfilled]: (state, action) => {

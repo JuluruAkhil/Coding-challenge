@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { AddCart, UpdateCart, RemoveCart, Checkout } from '../service'
+import { GetCart, AddCart, UpdateCart, RemoveCart, Checkout } from '../service'
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -10,6 +10,11 @@ export const cartSlice = createSlice({
     loading: false,
   },
   extraReducers: {
+    [GetCart.fulfilled]: (state, action) => {
+      state.cart = action.payload
+      console.log(action.payload)
+    },
+    [GetCart.rejected]: (state, action) => {},
     [AddCart.fulfilled]: (state, action) => {
       state.cart.push({
         ...action.payload.product,

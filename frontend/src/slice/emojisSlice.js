@@ -66,11 +66,13 @@ export const emojisSlice = createSlice({
         price: 10.0,
       },
     ],
-    loading: false,
+    loading: true,
   },
   extraReducers: {
     [GetEmojis.fulfilled]: (state, action) => {
-      state.emojis = action.payload.data
+      state.emojis = action.payload
+      state.loading = false
+      console.log(action.payload)
     },
     [GetEmojis.rejected]: (state, action) => {},
   },

@@ -7,28 +7,25 @@ import toast, { Toaster } from 'react-hot-toast'
 function Emoji({ emoji }) {
   const dispatch = useDispatch()
   const { emojis } = useSelector((state) => state.emojis)
-  const { user } = useSelector((state) => state.user)
+  const user = useSelector((state) => state.user)
 
   const notify = () => toast.success(`${emoji.name} Added to Cart`)
 
   function AddToCart(key) {
     notify()
-    dispatch(
-      AddCart({
-        product: {
-          product: { ...emojis[key] },
-          customer: { ...user },
-          quantity: 1,
-        },
-      })
-    )
+    const AddEmojiData = {
+      product: { ...emojis[key] },
+      customer: { ...user },
+      quantity: 1,
+    }
+    dispatch(AddCart(AddEmojiData))
   }
 
   return (
     <>
       <Col>
         <Card className="text-center">
-          <Card.Img variant="top" src="holder.js/100px160" />
+          <Card.Img variant="top" src={emoji['image']} />
           <Card.Body>
             <Card.Title>{emoji.name}</Card.Title>
             <Card.Text>{emoji.description}</Card.Text>

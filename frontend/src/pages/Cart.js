@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container, Col, Row, Card, Button, ListGroup } from 'react-bootstrap'
 import CartItem from '../components/CartItem'
-import { Checkout } from '../service'
+import { Checkout, GetCart } from '../service'
 import { useSelector, useDispatch } from 'react-redux'
 
 function Cart() {
   const dispatch = useDispatch()
   const { cart } = useSelector((state) => state.cart)
-  const { userId } = useSelector((state) => state.user)
+  const { id } = useSelector((state) => state.user)
 
   const clickCheckout = () => {
-    dispatch(Checkout({ userId, cart }))
+    dispatch(Checkout({ id, cart }))
   }
+
+  useEffect(() => {
+    console.log(id)
+    dispatch(GetCart(id))
+  }, [])
 
   return (
     <Container>
@@ -21,14 +26,16 @@ function Cart() {
             <h1>Cart (2 items)</h1>
           </Row>
           <Row>
-            {cart.map((cartItemData) => {
-              return (
-                <CartItem
-                  cartItemData={cartItemData}
-                  key={cartItemData['id']}
-                />
-              )
-            })}
+            {cart &&
+              cart.map((cartItemData) => {
+                return (
+                  <CartItem
+                    cartItemData={cartItemData}
+                    key={cartItemData['id']}
+                    quantity={cartItemData['quantity']}
+                  />
+                )
+              })}
           </Row>
         </Col>
         <Col>
