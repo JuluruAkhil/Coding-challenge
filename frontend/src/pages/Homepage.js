@@ -11,7 +11,7 @@ function Homepage() {
 
   useEffect(() => {
     dispatch(GetEmojis())
-  }, [])
+  }, [dispatch])
 
   return (
     <Container>

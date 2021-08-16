@@ -14,9 +14,15 @@ export const GetCart = createAsyncThunk(
 export const AddCart = createAsyncThunk(
   'cart/AddCart',
   async (emojiAddData) => {
-    await await (
-      await axios.post(`${BASE_URL}/dbkudos/cart/add`, emojiAddData)
+    let data = await await (
+      await axios.post(`${BASE_URL}/dbkudos/cart/add`, emojiAddData[0])
     ).data
+
+    data = await await (
+      await axios.get(`${BASE_URL}/dbkudos/cart/${emojiAddData[1]}`)
+    ).data
+
+    return data
   }
 )
 

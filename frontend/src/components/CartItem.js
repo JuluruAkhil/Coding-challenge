@@ -1,20 +1,37 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { UpdateCart, GetCart, RemoveItemFromCart } from '../service'
-import { useDispatch } from 'react-redux'
+import { UpdateCart, RemoveItemFromCart } from '../service'
+import { useDispatch, useSelector } from 'react-redux'
 
-function CartItem({ cartItemData, quantity }) {
+function CartItem({ cartItemData, quantity, notifyNotEnoughBalance }) {
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
+  const { cart } = useSelector((state) => state.cart)
+
+  function getPrice() {
+    let total = 0
+    for (let index = 0; index < cart.length; index++) {
+      const element = cart[index]
+
+      total += element['quantity'] * element['product']['price']
+    }
+
+    return total
+  }
 
   function updateQty(Action) {
-    if (Action === 'add' && cartItemData['quantity'] <= 9) {
-      dispatch(
-        UpdateCart({
-          customer_id: cartItemData['customer']['id'],
-          product_id: cartItemData['product']['id'],
-          quantity: cartItemData['quantity'] + 1,
-        })
-      )
+    if (Action === 'add') {
+      if (user.balance < getPrice() + cartItemData['product']['price']) {
+        notifyNotEnoughBalance()
+      } else {
+        dispatch(
+          UpdateCart({
+            customer_id: cartItemData['customer']['id'],
+            product_id: cartItemData['product']['id'],
+            quantity: cartItemData['quantity'] + 1,
+          })
+        )
+      }
     } else if (Action === 'sub' && cartItemData['quantity'] >= 1) {
       dispatch(
         UpdateCart({
@@ -67,7 +84,6 @@ function CartItem({ cartItemData, quantity }) {
             readOnly={true}
             value={quantity}
             min="1"
-            max="10"
           />
           <span class="input-group-btn">
             <button

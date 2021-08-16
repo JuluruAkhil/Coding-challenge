@@ -8,20 +8,59 @@ function Emoji({ emoji }) {
   const dispatch = useDispatch()
   const { emojis } = useSelector((state) => state.emojis)
   const user = useSelector((state) => state.user)
+  const { cart } = useSelector((state) => state.cart)
 
-  const notify = () => toast.success(`${emoji.name} Added to Cart`)
+  const notifyAdded = () => toast.success(`${emoji.name} Added to Cart`)
+  const notifyNotAdded = () => toast.error(`${emoji.name} Already in Cart`)
+  const notifyNotEnoughBalance = () =>
+    toast.error(`Wallet balance not sufficent`)
+
+  function getPrice() {
+    let total = 0
+    for (let index = 0; index < cart.length; index++) {
+      const element = cart[index]
+
+      total += element['quantity'] * element['product']['price']
+      console.log(element)
+    }
+
+    return total
+  }
+
+  function emojiToSend(key) {
+    return emojis.filter((emoji) => {
+      return emoji.id === key
+    })[0]
+  }
+
+  function checkEmojiInCart(key) {
+    for (let index = 0; index < cart.length; index++) {
+      const cartItem = cart[index]
+      if (cartItem.product.id === key) {
+        console.log(cartItem.product.id, key)
+        return true
+      }
+    }
+    return false
+  }
 
   function AddToCart(key) {
-    notify()
-    const emojiToSend = emojis.filter((emoji) => {
-      return emoji.id === key
-    })
-    const AddEmojiData = {
-      product: { ...emojiToSend[0] },
-      customer: { ...user },
-      quantity: 1,
+    if (user.balance < getPrice() + emojiToSend(key)['price']) {
+      notifyNotEnoughBalance()
+    } else if (checkEmojiInCart(key)) {
+      notifyNotAdded()
+    } else if (user.balance >= getPrice() + emojiToSend(key)['price']) {
+      notifyAdded()
+      const AddEmojiData = [
+        {
+          product: { ...emojiToSend(key) },
+          customer: { ...user },
+          quantity: 1,
+        },
+        user.id,
+      ]
+      dispatch(AddCart(AddEmojiData))
     }
-    dispatch(AddCart(AddEmojiData))
   }
 
   return (

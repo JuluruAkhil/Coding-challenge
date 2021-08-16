@@ -6,7 +6,7 @@ export const userSlice = createSlice({
   initialState: {
     id: 2,
     name: 'Akhil',
-    balance: 1000,
+    balance: 10,
   },
   extraReducers: {
     [LoginUser.fulfilled]: (state, action) => {
