@@ -24,6 +24,9 @@ function NavbarComponent() {
           <Nav.Link as={Link} to="/cart">
             <i class="fas fa-shopping-cart"></i> Cart
           </Nav.Link>
+          <Nav.Link as={Link} to="/leaderboard">
+            <i class="fas fa-shopping-cart"></i> Leaderboard
+          </Nav.Link>
           {user.id === null ? (
             <Nav.Link as={Link} to="/login">
               <i class="fas fa-sign-in-alt"></i> Login

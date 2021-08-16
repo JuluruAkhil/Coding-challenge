@@ -2,6 +2,7 @@ import Homepage from './pages/Homepage'
 import Cart from './pages/Cart'
 import NavbarComponent from './components/Navbar'
 import UserProfile from './pages/UserProfile'
+import Leaderboard from './pages/Leaderboard'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Login from './pages/Login'
 
@@ -14,6 +15,9 @@ function App() {
       <Switch>
         <Route path="/profile">
           <UserProfile />
+        </Route>
+        <Route path="/leaderboard">
+          <Leaderboard />
         </Route>
         <Route path="/Login">
           <Login />
