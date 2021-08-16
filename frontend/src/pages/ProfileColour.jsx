@@ -55,6 +55,7 @@ export default function ProfileColour() {
   const dispatch = useDispatch()
   let history = useHistory()
   const user = useSelector((state) => state.user)
+  const { orders } = useSelector((state) => state.orders)
 
   return (
     <React.Fragment>
@@ -78,30 +79,14 @@ export default function ProfileColour() {
           </Grid>
 
           <div>
-            <Chip
-              className={classes.chip}
-              style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
-              label="Fast Starter"
-              size="medium"
-            />
-            <Chip
-              className={classes.chip}
-              style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
-              label="Collaborator"
-              size="medium"
-            />
-            <Chip
-              className={classes.chip}
-              style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
-              label="Achiever"
-              size="medium"
-            />
-            <Chip
-              className={classes.chip}
-              style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
-              label="Legendary"
-              size="medium"
-            />
+            {orders.map((order) => (
+              <Chip
+                className={classes.chip}
+                style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
+                label={order.name}
+                size="medium"
+              />
+            ))}
           </div>
           <br></br>
           <div className={classes.about}>

@@ -48,13 +48,22 @@ function NavbarComponent() {
               <i class="fas fa-sign-in-alt"></i> Login
             </Nav.Link>
           ) : (
-            <Nav.Link
-              as={Link}
-              to="/profile"
-              style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
-            >
-              <i class="fas fa-user"></i> My Profile
-            </Nav.Link>
+            <>
+              <Nav.Link
+                as={Link}
+                to="/profile"
+                style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
+              >
+                <i class="fas fa-user"></i> My Profile
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/"
+                style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
+              >
+                {`dbKudosPoints: ${user.balance}`}
+              </Nav.Link>
+            </>
           )}
         </Nav>
       </Container>

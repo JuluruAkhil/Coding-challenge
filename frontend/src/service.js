@@ -94,3 +94,15 @@ export const GetEmojis = createAsyncThunk(
 
   async () => await await (await axios.get(`${BASE_URL}/dbkudos/products`)).data
 )
+
+export const GetOrders = createAsyncThunk('orders', async (userId) => {
+  let order = await await (
+    await axios.get(`${BASE_URL}/dbkudos/orders/${userId}`)
+  ).data
+
+  let emojis = await await (
+    await axios.get(`${BASE_URL}/dbkudos/products`)
+  ).data
+
+  return [order, emojis]
+})

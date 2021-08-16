@@ -105,9 +105,7 @@ function Cart() {
             </Row>
           </Col>
           <Col>
-            <Card className="align-content-end justify-content-end">
-              <div>{`dbKudosPoints: ${balance}`}</div>
-            </Card>
+            <br />
             <Card class="mb-3">
               <Card.Body>
                 <h5 class="mb-3">Checkout</h5>

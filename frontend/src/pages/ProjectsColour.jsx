@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import Button from '@material-ui/core/Button'
+import React, { useEffect } from 'react'
 // import Card from '@material-ui/core/Card'
 // import CardActions from '@material-ui/core/CardActions'
 // import CardContent from '@material-ui/core/CardContent'
@@ -21,8 +19,9 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 //import Link from "@material-ui/core/Link";
 // import Profile from './Profile.jsx'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ProfileColour from './ProfileColour.jsx'
+import { GetOrders } from '../service'
 
 //api
 // import UserService from './service/UserService'
@@ -91,85 +90,16 @@ const rows = [
   createData('Location', 'Pune, India'),
 ]
 
-// function createData2(rank, name, points) {
-//   return { rank, name, points }
-// }
-
-// const rows2 = [
-//   createData2(1, 'prod1', 't1'),
-//   createData2(2, 'prod2', 't2'),
-//   createData2(3, 'prod3', 't3'),
-//   createData2(4, 'prod4', 't4'),
-//   createData2(5, 'prod5', 't5'),
-// ]
-
 export default function Login() {
   const classes = useStyles()
 
-  // class UserComponent extends React.Component {
-  //   // constructor(props) {
-  //   //   super(props);
-  //   //   this.state = {
-  //   //     users: []
-  //   //   };
-  //   // }
-
-  //   // componentDidMount() {
-  //   //   UserService.getUsers().then((response) => {
-  //   //     this.setState({ users: response.data });
-  //   //     console.log(this.state.users);
-  //   //   });
-  //   // }
-
-  //   render() {
-
-  const [orders, setOrders] = useState([])
-  const [table, setTable] = useState([])
-  const USERS_REST_API_URL = 'http://localhost:8081'
   const user = useSelector((state) => state.user)
-  const { emojis } = useSelector((state) => state.emojis)
+  const { orders } = useSelector((state) => state.orders)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    async function fetchMyData() {
-      axios
-        .get(`${USERS_REST_API_URL}/dbkudos/orders/${user.id}`)
-        .then((res) => {
-          setOrders(res.data)
-        })
-    }
-
-    fetchMyData()
+    dispatch(GetOrders(user.id))
   }, [])
-
-  function getProducts() {
-    let products = {}
-    for (let index = 0; index < orders.length; index++) {
-      const order = orders[index]
-      if (products[order['product']['id']]) {
-        products[order['product']['id']] += order['quantity']
-        console.log(order['quantity'])
-      } else {
-        products[order['product']['id']] = order['quantity']
-      }
-    }
-    return products
-  }
-
-  function generateTable() {
-    let products = getProducts()
-    let tableData = []
-    console.log(products)
-    const keys = Object.keys(products)
-    keys.forEach((key) => {
-      tableData.push({
-        id: key,
-        name: emojis[key - 1]['name'],
-        quantity: products[key],
-      })
-    })
-    setTable(tableData)
-    console.log(tableData)
-  }
 
   return (
     <React.Fragment>
@@ -254,7 +184,7 @@ export default function Login() {
                           </TableRow>
                         </TableHead>
                         <TableBody>
-                          {table.map((row) => (
+                          {orders.map((row) => (
                             <TableRow key={row.id}>
                               <TableCell component="th" scope="row">
                                 {row.id}
@@ -273,9 +203,6 @@ export default function Login() {
               </Grid>
             </Container>
           </main>
-          <Button variant="primary" onClick={generateTable}>
-            Click
-          </Button>
         </Grid>
       </Grid>
     </React.Fragment>
