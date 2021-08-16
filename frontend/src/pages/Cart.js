@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast'
 function Cart() {
   const dispatch = useDispatch()
   const { cart } = useSelector((state) => state.cart)
-  const { id, name, balance } = useSelector((state) => state.user)
+  const { id, balance } = useSelector((state) => state.user)
 
   const notifyNotEnoughBalance = () =>
     toast.error(`Wallet balance not sufficent`)
@@ -16,36 +16,36 @@ function Cart() {
     toast.success('Checkout Done Successfully')
   const notifyNoItemsPresent = () => toast.error('No Items Present')
 
-  function getCartProducts() {
-    let orderDetails = []
-    for (let index = 0; index < cart.length; index++) {
-      const cartItem = cart[index]
-      orderDetails.push({
-        product: cartItem['product'],
-        quantity: cartItem['quantity'],
-      })
-    }
-    return orderDetails
-  }
+  // function getCartProducts() {
+  //   let orderDetails = []
+  //   for (let index = 0; index < cart.length; index++) {
+  //     const cartItem = cart[index]
+  //     orderDetails.push({
+  //       product: cartItem['product'],
+  //       quantity: cartItem['quantity'],
+  //     })
+  //   }
+  //   return orderDetails
+  // }
 
   const clickCheckout = () => {
     if ((getQty() > 0) & (getPrice() <= balance)) {
-      let CheckoutData = {
-        payload: {
-          order: {
-            customer: {
-              id,
-              name,
-              balance,
-            },
-            amount: getPrice(),
-          },
-          orderDetails: getCartProducts(),
-        },
-        customerId: id,
-        amount: getPrice(),
-      }
-      dispatch(Checkout(CheckoutData))
+      // let CheckoutData = {
+      //   payload: {
+      //     order: {
+      //       customer: {
+      //         id,
+      //         name,
+      //         balance,
+      //       },
+      //       amount: getPrice(),
+      //     },
+      //     orderDetails: getCartProducts(),
+      //   },
+      //   customerId: id,
+      //   amount: getPrice(),
+      // }
+      dispatch(Checkout(id))
       notifyCheckoutSuccessful()
     } else if (getQty() <= 0) {
       notifyNoItemsPresent()

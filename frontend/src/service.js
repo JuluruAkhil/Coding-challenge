@@ -75,12 +75,9 @@ export const RemoveCart = createAsyncThunk(
 
 export const Checkout = createAsyncThunk(
   'cart/Checkout',
-  async (CheckoutData) =>
+  async (id) =>
     await await (
-      await axios.post(
-        `${BASE_URL}/Checkout/${CheckoutData.customerId}/${CheckoutData.amount}`,
-        CheckoutData.payload
-      )
+      await axios.post(`${BASE_URL}/dbkudos/checkout/${id}`)
     ).data
 )
 
@@ -88,7 +85,7 @@ export const LoginUser = createAsyncThunk(
   'login',
   async (user) =>
     await await await (
-      await axios.get(`${BASE_URL}/dbkudos/customers/${user.id}`)
+      await axios.get(`${BASE_URL}/dbkudos/login/${user.email}`)
     ).data
 )
 

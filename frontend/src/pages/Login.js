@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom'
 
 const Login = () => {
   const dispatch = useDispatch()
-  const [localUser, setLocaluser] = useState({ id: null, password: null })
+  const [localUser, setLocaluser] = useState({ email: null, password: null })
 
   let history = useHistory()
 
@@ -31,12 +31,13 @@ const Login = () => {
           <form className="shadow p-3 mb-5 bg-white rounded">
             <div className="mb-3">
               <label className="form-label" htmlFor="formBasicEmail">
-                User Id
+                Email
               </label>
               <input
-                placeholder="Enter UserID"
+                type="email"
+                placeholder="Enter Email"
                 className="form-control"
-                onChange={(e) => onChange('id', e.target.value)}
+                onChange={(e) => onChange('email', e.target.value)}
               />
               <small className="text-muted form-text"></small>
             </div>

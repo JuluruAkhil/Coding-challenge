@@ -9,7 +9,9 @@ function getUserFromLocalStorage() {
   return {
     id: null,
     name: null,
-    balance: 100,
+    email: null,
+    balance: 0,
+    score: 0,
   }
 }
 
@@ -20,17 +22,22 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.id = null
       state.name = null
+      state.email = null
       state.balance = 0
+      state.score = 0
       localStorage.removeItem('user')
     },
   },
   extraReducers: {
     [LoginUser.fulfilled]: (state, action) => {
-      console.log(action.payload)
       state.id = action.payload.id
       state.name = action.payload.name
       state.balance = action.payload.balance
-      localStorage.setItem('user', JSON.stringify({ ...state }))
+      state.email = action.payload.email
+      state.score = action.payload.score
+      if (state !== {}) {
+        localStorage.setItem('user', JSON.stringify({ ...state }))
+      }
     },
     [LoginUser.rejected]: (state, action) => {},
   },

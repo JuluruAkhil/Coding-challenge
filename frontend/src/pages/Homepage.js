@@ -17,7 +17,9 @@ function Homepage() {
 
   useEffect(() => {
     dispatch(GetEmojis())
-    dispatch(LoginUser(user))
+    if (user.id !== null) {
+      dispatch(LoginUser(user))
+    }
   }, [])
 
   return (
