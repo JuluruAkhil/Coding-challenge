@@ -14,16 +14,28 @@ function Cart() {
   }
 
   useEffect(() => {
-    console.log(id)
     dispatch(GetCart(id))
-  }, [])
+  }, [dispatch, id])
+
+  function getQty() {
+    let total = 0
+    for (let index = 0; index < cart.length; index++) {
+      const element = cart[index]
+
+      total += element['quantity']
+    }
+    return total
+  }
 
   return (
     <Container>
       <Row>
         <Col md={{ span: 8 }}>
           <Row>
-            <h1>Cart (2 items)</h1>
+            <h1>
+              {`Cart
+              ${getQty()} items`}
+            </h1>
           </Row>
           <Row>
             {cart &&

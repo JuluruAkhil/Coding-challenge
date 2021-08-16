@@ -22,13 +22,38 @@ export const AddCart = createAsyncThunk(
 
 export const UpdateCart = createAsyncThunk(
   'cart/UpdateCart',
-  async (emojiUpdateData) =>
-    await await (
-      await axios.put(
-        `${BASE_URL}/dbkudos/cart/update/{customer_id}/{product_id}/{quantity}`,
-        emojiUpdateData
+  async (emojiUpdateData) => {
+    let data = await await (
+      await axios.post(
+        `${BASE_URL}/dbkudos/cart/update/${emojiUpdateData.customer_id}/${emojiUpdateData.product_id}/${emojiUpdateData.quantity}`
       )
     ).data
+
+    data = await await (
+      await axios.get(`${BASE_URL}/dbkudos/cart/${emojiUpdateData.customer_id}`)
+    ).data
+
+    return data
+  }
+)
+
+export const RemoveItemFromCart = createAsyncThunk(
+  'cart/RemoveItemFromCart',
+  async (emojiRemoveItemData) => {
+    let data = await await (
+      await axios.post(
+        `${BASE_URL}/dbkudos/cart/remove/${emojiRemoveItemData.customer_id}/${emojiRemoveItemData.product_id}`
+      )
+    ).data
+
+    data = await await (
+      await axios.get(
+        `${BASE_URL}/dbkudos/cart/${emojiRemoveItemData.customer_id}`
+      )
+    ).data
+
+    return data
+  }
 )
 
 export const RemoveCart = createAsyncThunk(

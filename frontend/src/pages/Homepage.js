@@ -25,7 +25,7 @@ function Homepage() {
       <Row xs={1} md={3} className="g-3">
         {!emojis['loading'] &&
           emojis.map((emoji) => {
-            return <Emoji emoji={emoji} key={emoji['id']} />
+            return <Emoji emoji={emoji} key={emoji.id} />
           })}
       </Row>
     </Container>

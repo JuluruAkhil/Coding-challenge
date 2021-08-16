@@ -13,8 +13,11 @@ function Emoji({ emoji }) {
 
   function AddToCart(key) {
     notify()
+    const emojiToSend = emojis.filter((emoji) => {
+      return emoji.id === key
+    })
     const AddEmojiData = {
-      product: { ...emojis[key] },
+      product: { ...emojiToSend[0] },
       customer: { ...user },
       quantity: 1,
     }
