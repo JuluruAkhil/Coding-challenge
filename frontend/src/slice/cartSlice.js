@@ -36,7 +36,7 @@ export const cartSlice = createSlice({
     },
     [RemoveCart.rejected]: (state, action) => {},
     [Checkout.fulfilled]: (state, action) => {
-      state.cart = {}
+      state.cart = []
     },
     [Checkout.rejected]: (state, action) => {},
   },

@@ -2,18 +2,12 @@ import React from 'react'
 import { Card, Col, Button } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { AddCart } from '../service'
-import toast, { Toaster } from 'react-hot-toast'
 
-function Emoji({ emoji }) {
+function Emoji({ emoji, notifyAdded, notifyNotAdded, notifyNotEnoughBalance }) {
   const dispatch = useDispatch()
   const { emojis } = useSelector((state) => state.emojis)
   const user = useSelector((state) => state.user)
   const { cart } = useSelector((state) => state.cart)
-
-  const notifyAdded = () => toast.success(`${emoji.name} Added to Cart`)
-  const notifyNotAdded = () => toast.error(`${emoji.name} Already in Cart`)
-  const notifyNotEnoughBalance = () =>
-    toast.error(`Wallet balance not sufficent`)
 
   function getPrice() {
     let total = 0
@@ -48,9 +42,9 @@ function Emoji({ emoji }) {
     if (user.balance < getPrice() + emojiToSend(key)['price']) {
       notifyNotEnoughBalance()
     } else if (checkEmojiInCart(key)) {
-      notifyNotAdded()
+      notifyNotAdded(emojiToSend(key))
     } else if (user.balance >= getPrice() + emojiToSend(key)['price']) {
-      notifyAdded()
+      notifyAdded(emojiToSend(key))
       const AddEmojiData = [
         {
           product: { ...emojiToSend(key) },
@@ -84,7 +78,6 @@ function Emoji({ emoji }) {
           </Card.Body>
         </Card>
       </Col>
-      <Toaster />
     </>
   )
 }

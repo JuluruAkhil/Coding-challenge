@@ -1,14 +1,14 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import Avatar from '@material-ui/core/Avatar'
+// import Button from '@material-ui/core/Button'
+// import Card from '@material-ui/core/Card'
+// import CardActions from '@material-ui/core/CardActions'
+// import CardContent from '@material-ui/core/CardContent'
+// import CardMedia from '@material-ui/core/CardMedia'
+// import Avatar from '@material-ui/core/Avatar'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+// import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
@@ -18,6 +18,10 @@ import TableCell from '@material-ui/core/TableCell'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import { Button } from 'react-bootstrap'
+import { logout } from '../slice/userSlice'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 //import Link from "@material-ui/core/Link";
 import Profile from './Profile.jsx'
@@ -115,6 +119,8 @@ const rows2 = [
 
 export default function Login() {
   const classes = useStyles()
+  const dispatch = useDispatch()
+  let history = useHistory()
 
   return (
     <React.Fragment>
@@ -192,6 +198,16 @@ export default function Login() {
                       </Table>
                     </TableContainer>
                   </Grid>
+                  <Button
+                    align="right"
+                    variant="danger"
+                    onClick={() => {
+                      dispatch(logout())
+                      history.push('/')
+                    }}
+                  >
+                    Logout
+                  </Button>
                 </Grid>
               </Grid>
             </Container>

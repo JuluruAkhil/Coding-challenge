@@ -77,7 +77,10 @@ export const Checkout = createAsyncThunk(
   'cart/Checkout',
   async (CheckoutData) =>
     await await (
-      await axios.post(`${BASE_URL}/checkout`, CheckoutData)
+      await axios.post(
+        `${BASE_URL}/Checkout/${CheckoutData.customerId}/${CheckoutData.amount}`,
+        CheckoutData.payload
+      )
     ).data
 )
 
@@ -94,15 +97,3 @@ export const GetEmojis = createAsyncThunk(
 
   async () => await await (await axios.get(`${BASE_URL}/dbkudos/products`)).data
 )
-
-// ;async () => {
-//   // await await await (
-//   //   await axios.get(`${BASE_URL}/dbkudos/products`)
-//   // ).data
-//   // axios
-//   //   .get(`${BASE_URL}/dbkudos/products`)
-//   //   .then((res) => res.data)
-//   //   .then((data) => console.log(data))
-//   // const res = await axios.get(`${BASE_URL}/dbkudos/products`)
-//   // return await res.json()
-// }

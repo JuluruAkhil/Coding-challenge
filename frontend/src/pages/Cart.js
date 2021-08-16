@@ -8,13 +8,50 @@ import toast, { Toaster } from 'react-hot-toast'
 function Cart() {
   const dispatch = useDispatch()
   const { cart } = useSelector((state) => state.cart)
-  const { id, balance } = useSelector((state) => state.user)
+  const { id, name, balance } = useSelector((state) => state.user)
 
   const notifyNotEnoughBalance = () =>
     toast.error(`Wallet balance not sufficent`)
+  const notifyCheckoutSuccessful = () =>
+    toast.success('Checkout Done Successfully')
+  const notifyNoItemsPresent = () => toast.error('No Items Present')
+
+  function getCartProducts() {
+    let orderDetails = []
+    for (let index = 0; index < cart.length; index++) {
+      const cartItem = cart[index]
+      orderDetails.push({
+        product: cartItem['product'],
+        quantity: cartItem['quantity'],
+      })
+    }
+    return orderDetails
+  }
 
   const clickCheckout = () => {
-    dispatch(Checkout({ id, cart }))
+    if ((getQty() > 0) & (getPrice() <= balance)) {
+      let CheckoutData = {
+        payload: {
+          order: {
+            customer: {
+              id,
+              name,
+              balance,
+            },
+            amount: getPrice(),
+          },
+          orderDetails: getCartProducts(),
+        },
+        customerId: id,
+        amount: getPrice(),
+      }
+      dispatch(Checkout(CheckoutData))
+      notifyCheckoutSuccessful()
+    } else if (getQty() <= 0) {
+      notifyNoItemsPresent()
+    } else {
+      notifyNotEnoughBalance()
+    }
   }
 
   useEffect(() => {

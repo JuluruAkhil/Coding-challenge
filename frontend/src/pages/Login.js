@@ -6,9 +6,13 @@ import { useDispatch } from 'react-redux'
 
 import { LoginUser } from '../service'
 
+import { useHistory } from 'react-router-dom'
+
 const Login = () => {
   const dispatch = useDispatch()
   const [localUser, setLocaluser] = useState({ id: null, password: null })
+
+  let history = useHistory()
 
   const onChange = (type, value) => {
     setLocaluser({ ...localUser, [type]: value })
@@ -17,6 +21,7 @@ const Login = () => {
   function loginSubmit(e) {
     e.preventDefault()
     dispatch(LoginUser(localUser))
+    history.push('/')
   }
 
   return (
@@ -29,10 +34,9 @@ const Login = () => {
                 User Id
               </label>
               <input
-                type="email"
                 placeholder="Enter UserID"
                 className="form-control"
-                onChange={(e) => onChange('email', e.target.value)}
+                onChange={(e) => onChange('id', e.target.value)}
               />
               <small className="text-muted form-text"></small>
             </div>
@@ -52,7 +56,7 @@ const Login = () => {
             <button
               className="btn btn-primary"
               type="submit"
-              onSubmit={loginSubmit}
+              onClick={loginSubmit}
             >
               Submit
             </button>

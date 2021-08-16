@@ -1,20 +1,37 @@
 import React from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function NavbarComponent() {
   const user = useSelector((state) => state.user)
 
+  // style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="light" variant="light">
       <Container>
-        <Navbar.Brand href="/">Navbar</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          <img
+            src="/Db-logo.png"
+            width="50"
+            className="d-inline-block
+          align-top"
+            alt="React Bootstrap logo"
+          />
+          dbKudosEmoji
+        </Navbar.Brand>
         <Nav className="me-justify-content-end">
-          <Nav.Link href="/cart">Cart</Nav.Link>
+          <Nav.Link as={Link} to="/cart">
+            <i class="fas fa-shopping-cart"></i> Cart
+          </Nav.Link>
           {user.id === null ? (
-            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link as={Link} to="/login">
+              Login
+            </Nav.Link>
           ) : (
-            <Nav.Link href="/profile">My Profile</Nav.Link>
+            <Nav.Link as={Link} to="/profile">
+              <i class="fas fa-user"></i> My Profile
+            </Nav.Link>
           )}
         </Nav>
       </Container>

@@ -72,7 +72,6 @@ export const emojisSlice = createSlice({
     [GetEmojis.fulfilled]: (state, action) => {
       state.emojis = action.payload
       state.loading = false
-      console.log(action.payload)
     },
     [GetEmojis.rejected]: (state, action) => {},
   },
