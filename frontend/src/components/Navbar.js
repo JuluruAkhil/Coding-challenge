@@ -26,7 +26,7 @@ function NavbarComponent() {
           </Nav.Link>
           {user.id === null ? (
             <Nav.Link as={Link} to="/login">
-              Login
+              <i class="fas fa-sign-in-alt"></i> Login
             </Nav.Link>
           ) : (
             <Nav.Link as={Link} to="/profile">
