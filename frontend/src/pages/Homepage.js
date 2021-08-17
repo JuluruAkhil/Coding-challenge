@@ -20,6 +20,7 @@ function Homepage() {
     if (user.id !== null) {
       dispatch(LoginUser(user))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

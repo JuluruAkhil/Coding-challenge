@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-const BASE_URL = 'http://localhost:8081'
+const BASE_URL =
+  'https://api-dot-grads-coding-challenge-group-9.uc.r.appspot.com'
 
 export const GetCart = createAsyncThunk(
   'cart/GetCart',

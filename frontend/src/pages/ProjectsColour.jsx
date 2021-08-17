@@ -99,6 +99,7 @@ export default function Login() {
 
   useEffect(() => {
     dispatch(GetOrders(user.id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

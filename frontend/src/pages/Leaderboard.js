@@ -39,7 +39,8 @@ export default function BasicTable() {
 
   const [leaders, setLeaders] = useState([])
 
-  const USERS_REST_API_URL = 'http://localhost:8081'
+  const USERS_REST_API_URL =
+    'https://api-dot-grads-coding-challenge-group-9.uc.r.appspot.com'
 
   useEffect(() => {
     async function fetchMyData() {
