@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { LoginUser } from '../service'
 
 function NavbarComponent() {
   const user = useSelector((state) => state.user)
+  const { cart } = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (user.id !== null) {
+      dispatch(LoginUser(user))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart])
 
   // style={{ backgroundColor: '#d81b60', color: '#ffffff' }}
   return (
